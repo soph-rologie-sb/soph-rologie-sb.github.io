@@ -276,6 +276,9 @@ section.dark h1 em, section.dark h2 em { color: var(--c-rose); }
   color: var(--c-terracotta-dark);
   letter-spacing: -0.005em;
   line-height: 1.1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
 }
 .brand small {
   display: block;
@@ -286,6 +289,17 @@ section.dark h1 em, section.dark h2 em { color: var(--c-rose); }
   text-transform: uppercase;
   color: var(--c-terracotta);
   margin-top: 4px;
+}
+.brand-logo {
+  height: 64px;
+  width: auto;
+  display: block;
+  transition: transform var(--transition);
+}
+.brand-logo:hover { transform: scale(1.04); }
+
+@media (max-width: 720px) {
+  .brand-logo { height: 48px; }
 }
 
 .nav-links {
@@ -416,6 +430,16 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: rotate(-45deg); top: 17
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* Variante hero avec photo */
+.hero-visual.photo { background: none; }
+.hero-visual.photo::before { content: none; }
+.hero-visual.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* ============================================
@@ -557,6 +581,20 @@ section.dark .timeline::before {
 }
 .split-visual:hover {
   border-radius: 48% 52% 60% 40% / 52% 48% 55% 45%;
+}
+
+/* Variante avec vraie photo */
+.split-visual.photo {
+  background: none;
+  padding: 0;
+  overflow: hidden;
+  font-size: 0;
+}
+.split-visual.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* ============================================
