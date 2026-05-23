@@ -1,5 +1,5 @@
 /* =====================================================
-   Sophrologie & Sérénité — script principal
+   Soph'rologie SB — script principal
    ===================================================== */
 
 (function () {
@@ -8,6 +8,7 @@
   /* --------- Menu mobile --------- */
   const toggle = document.querySelector('.nav-toggle');
   const body = document.body;
+  const header = document.querySelector('.site-header');
   if (toggle) {
     toggle.addEventListener('click', () => {
       const open = body.classList.toggle('nav-open');
@@ -20,6 +21,47 @@
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
+  }
+
+  /* --------- Smart navbar : cache le menu au scroll down, l'affiche au scroll up --------- */
+  if (header) {
+    let lastY = window.scrollY;
+    let ticking = false;
+    const THRESHOLD_TOP = 80;       // au-dessus de ce seuil → toujours visible
+    const SCROLL_DELTA  = 6;         // évite les micro-mouvements
+
+    const updateHeader = () => {
+      const y = window.scrollY;
+      const delta = y - lastY;
+
+      // Ajoute l'ombre quand on a scrollé
+      header.classList.toggle('scrolled', y > 8);
+
+      if (y < THRESHOLD_TOP) {
+        header.classList.remove('nav-hidden');
+      } else if (Math.abs(delta) > SCROLL_DELTA) {
+        // Ne pas cacher si le menu mobile est ouvert
+        if (!body.classList.contains('nav-open')) {
+          if (delta > 0) {
+            // scroll vers le bas
+            header.classList.add('nav-hidden');
+          } else {
+            // scroll vers le haut
+            header.classList.remove('nav-hidden');
+          }
+        }
+      }
+
+      lastY = y;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }, { passive: true });
   }
 
   /* --------- Scroll reveal (Intersection Observer) --------- */

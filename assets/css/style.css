@@ -262,12 +262,30 @@ section.dark h1 em, section.dark h2 em { color: var(--c-rose); }
   background: rgba(254, 245, 242, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--c-border);
+  transition: padding var(--transition), box-shadow var(--transition);
+}
+.site-header.scrolled {
+  box-shadow: 0 4px 20px rgba(167, 91, 71, 0.08);
+  background: rgba(254, 245, 242, 0.96);
 }
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 0;
+  padding: 0.9rem 0;
+}
+
+/* Smart navbar — masquer le menu au scroll down (desktop uniquement) */
+.nav-links {
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+}
+@media (min-width: 721px) {
+  .site-header.nav-hidden .nav-links {
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
+    visibility: hidden;
+  }
 }
 .brand {
   font-family: var(--font-serif);
@@ -291,16 +309,12 @@ section.dark h1 em, section.dark h2 em { color: var(--c-rose); }
   margin-top: 4px;
 }
 .brand-logo {
-  height: 64px;
+  height: 48px;
   width: auto;
   display: block;
   transition: transform var(--transition);
 }
 .brand-logo:hover { transform: scale(1.04); }
-
-@media (max-width: 720px) {
-  .brand-logo { height: 48px; }
-}
 
 .nav-links {
   display: flex;
@@ -977,6 +991,9 @@ section.dark .quote-block cite { color: var(--c-rose); }
 /* ============================================
    RESPONSIVE
    ============================================ */
+/* ============================================
+   RESPONSIVE — Tablette
+   ============================================ */
 @media (max-width: 960px) {
   .hero .container,
   .split,
@@ -984,29 +1001,104 @@ section.dark .quote-block cite { color: var(--c-rose); }
   .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .split.reverse > :first-child { order: 0; }
   .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .pricing { grid-template-columns: 1fr; }
+  .pricing { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
   .timeline { grid-template-columns: repeat(2, 1fr); }
   .timeline::before { display: none; }
   .cta-banner { padding: 3rem 1.5rem; }
+
+  /* Limiter et centrer les visuels en colonne unique */
+  .hero-visual,
+  .split-visual { max-width: 440px; margin: 0 auto; width: 100%; }
+  .hero-content { text-align: left; }
+  .hero-content .lead { max-width: 100%; }
 }
 
+/* ============================================
+   RESPONSIVE — Mobile
+   ============================================ */
 @media (max-width: 720px) {
-  section { padding: var(--space-lg) 0; }
+  body { font-size: 16px; }
+  section { padding: 3.5rem 0; }
+  .container { padding: 0 1.25rem; }
+
+  /* Nav mobile */
   .nav-toggle { display: block; }
+  .nav { padding: 0.7rem 0; }
+  .brand-logo { height: 42px; }
+
   .nav-links {
     position: fixed;
     inset: 64px 0 auto 0;
     background: var(--c-cream);
     flex-direction: column;
-    padding: 2.25rem;
-    gap: 1.6rem;
+    padding: 2rem 1.5rem 2.5rem;
+    gap: 1.4rem;
     border-bottom: 1px solid var(--c-border);
     transform: translateY(-110%);
     transition: transform var(--transition);
+    box-shadow: 0 12px 30px rgba(167, 91, 71, 0.1);
+    opacity: 1 !important;  /* override smart-hide pour mobile */
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
   body.nav-open .nav-links { transform: translateY(0); }
+  .nav-links a { font-size: 0.82rem; padding: 0.5rem 0; }
+
+  /* Hero compact */
+  .hero { padding: 3rem 0 4rem; }
+  .hero .container { gap: 2.5rem; }
+  .hero-visual { max-width: 320px; }
+  .hero-actions .btn { padding: 0.85rem 1.6rem; font-size: 0.75rem; }
+
+  /* Page header compact */
+  .page-header { padding: 3.5rem 0 3rem; }
+
+  /* Layouts — tout en colonne unique */
   .grid-2, .grid-3, .grid-4, .timeline { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+  .split-visual { max-width: 340px; }
+
+  /* Cartes & padding plus compact */
+  .card { padding: 1.75rem; }
+  .card .icon { width: 52px; height: 52px; font-size: 1.4rem; }
+  .price-card { padding: 2rem 1.5rem; }
+  .price-card .price { font-size: 2.8rem; }
+  .contact-info, form.contact-form { padding: 1.75rem; }
+
+  /* CTA banner */
   .cta-banner { padding: 2.5rem 1.25rem; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+  .cta-banner p { font-size: 0.98rem; }
+
+  /* Eyebrow plus compact */
+  .eyebrow { letter-spacing: 0.22em; font-size: 0.72rem; gap: 0.6rem; }
+  .eyebrow::before, .section-head .eyebrow::after { width: 28px; }
+
+  /* Quote */
+  .quote-block { padding: 1.5rem 0; }
+  .quote-block blockquote::before,
+  .quote-block blockquote::after { font-size: 3.5rem; }
+
+  /* Footer */
+  .site-footer { padding: 3rem 0 1.5rem; }
+  .footer-grid { gap: 2rem; margin-bottom: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; font-size: 0.78rem; }
+
+  /* Section head */
+  .section-head { margin-bottom: 2.5rem; }
+}
+
+/* ============================================
+   RESPONSIVE — Petit téléphone (≤ 400px)
+   ============================================ */
+@media (max-width: 400px) {
+  .container { padding: 0 1rem; }
+  .brand-logo { height: 38px; }
+  .nav-links { inset: 60px 0 auto 0; }
+  .hero-visual { max-width: 260px; }
+  .split-visual { max-width: 280px; }
+  .card { padding: 1.5rem; }
+  .price-card { padding: 1.75rem 1.25rem; }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.7rem; }
+  .hero-content .lead { font-size: 1rem; }
 }
