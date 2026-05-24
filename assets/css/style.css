@@ -577,6 +577,18 @@ section.dark .theme-list li strong { color: var(--c-white); }
   font-size: 1.7rem;
   margin-bottom: 1.5rem;
 }
+/* Variante icône avec photo (au lieu d'un emoji) */
+.card .icon.icon-photo {
+  overflow: hidden;
+  background: var(--c-rose-soft);
+  padding: 0;
+}
+.card .icon.icon-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .card h3 { margin-bottom: 0.6rem; }
 .card p { color: var(--c-text-soft); margin: 0; }
 
