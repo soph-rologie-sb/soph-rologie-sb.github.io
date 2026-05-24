@@ -116,4 +116,40 @@
   document.querySelectorAll('[data-year]').forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
+
+  /* --------- Highlight du lien nav correspondant à la section visible --------- */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+    const linkBySection = new Map();
+    navLinks.forEach((link) => {
+      const id = link.getAttribute('href').slice(1);
+      if (id) linkBySection.set(id, link);
+    });
+
+    const setActive = (id) => {
+      navLinks.forEach((l) => l.classList.remove('active'));
+      const link = linkBySection.get(id);
+      if (link) link.classList.add('active');
+    };
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        // Trouve la section la plus visible parmi celles qui croisent
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length) {
+          setActive(visible[0].target.id);
+        }
+      },
+      {
+        // déclenche quand la section occupe la zone centrale du viewport
+        rootMargin: '-30% 0px -55% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
+    );
+    sections.forEach((s) => sectionObserver.observe(s));
+  }
 })();

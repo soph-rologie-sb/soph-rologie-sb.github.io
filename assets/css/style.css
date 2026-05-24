@@ -95,7 +95,14 @@
 
 /* Reset léger */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Compense la hauteur de la navbar sticky pour les ancres */
+  scroll-padding-top: 76px;
+}
+@media (max-width: 720px) {
+  html { scroll-padding-top: 64px; }
+}
 body {
   margin: 0;
   font-family: var(--font-sans);
