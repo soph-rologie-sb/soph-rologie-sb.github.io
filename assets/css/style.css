@@ -420,6 +420,78 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: rotate(-45deg); top: 17
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
+/* "Sophrologue" en grand au-dessus du titre */
+.hero-profession {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.3vw, 1.8rem);
+  font-weight: 500;
+  color: var(--c-terracotta);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+/* Boutons doubles côte à côte (axes) */
+.dual-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Liste thématique (page Entreprise) */
+.theme-block {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  padding: 2rem 2.25rem;
+  border: 1px solid var(--c-border);
+  box-shadow: var(--shadow-sm);
+}
+.theme-block + .theme-block { margin-top: 1.5rem; }
+.theme-block h3 {
+  color: var(--c-terracotta-dark);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--c-rose-soft);
+}
+.theme-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.theme-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-weight: 300;
+  color: var(--c-text-soft);
+}
+.theme-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--c-terracotta);
+}
+.theme-list li strong {
+  color: var(--c-terracotta-dark);
+  font-weight: 500;
+}
+section.dark .theme-block {
+  background: rgba(254, 245, 242, 0.07);
+  border-color: rgba(254, 245, 242, 0.12);
+  backdrop-filter: blur(8px);
+}
+section.dark .theme-block h3 {
+  color: var(--c-cream);
+  border-bottom-color: rgba(226, 169, 175, 0.3);
+}
+section.dark .theme-list li { color: rgba(254, 245, 242, 0.85); }
+section.dark .theme-list li::before { color: var(--c-rose); }
+section.dark .theme-list li strong { color: var(--c-white); }
+
 .hero-visual {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -454,6 +526,24 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: rotate(-45deg); top: 17
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Hero en cercle parfait + cadre rose */
+.hero-visual.round {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  max-width: 460px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-visual.round::after {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border: 1.5px solid var(--c-rose);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.7;
 }
 
 /* ============================================
@@ -610,6 +700,35 @@ section.dark .timeline::before {
   object-fit: cover;
   display: block;
 }
+
+/* Variante CERCLE PARFAIT (au lieu du blob organique) */
+.split-visual.round {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.split-visual.round:hover { border-radius: 50%; }
+/* Cadre rose poudré derrière la photo ronde (effet "logo") */
+.split-visual.round::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 1.5px solid var(--c-rose);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.split-visual.round {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Cadrage spécifique pour la photo olives (zoom sur la partie haut-droite) */
+.split-visual.olives img { object-position: 75% 25%; }
+.split-visual.cles img   { object-position: 38% 50%; }
+.split-visual.carnet img { object-position: 50% 55%; }
+.split-visual.zen img    { object-position: 55% 35%; }
 
 /* ============================================
    PUBLICS (chips)
