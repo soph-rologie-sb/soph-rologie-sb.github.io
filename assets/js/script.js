@@ -83,62 +83,32 @@
     reveals.forEach((el) => el.classList.add('in'));
   }
 
-  /* --------- Formulaire de contact — Formspree (AJAX) --------- */
-  const form   = document.getElementById(‘contactForm’);
-  const status = document.getElementById(‘formStatus’);
-
+  /* --------- Formulaire de contact (validation + feedback) --------- */
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
   if (form && status) {
-    form.addEventListener(‘submit’, async (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-
-      /* --- Validation côté client --- */
-      const data     = new FormData(form);
-      const required = [‘firstname’, ‘lastname’, ‘email’, ‘message’];
+      const data = new FormData(form);
+      const required = ['firstname', 'lastname', 'email', 'message'];
       for (const f of required) {
         if (!data.get(f) || !String(data.get(f)).trim()) {
-          status.textContent = ‘Merci de remplir tous les champs obligatoires.’;
-          status.className   = ‘form-status error’;
+          status.textContent = 'Merci de remplir tous les champs obligatoires.';
+          status.style.color = '#B23A48';
           return;
         }
       }
-      const email = String(data.get(‘email’)).trim();
+      const email = String(data.get('email')).trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        status.textContent = ‘Adresse e-mail invalide.’;
-        status.className   = ‘form-status error’;
+        status.textContent = 'Adresse email invalide.';
+        status.style.color = '#B23A48';
         return;
       }
 
-      /* --- Envoi vers Formspree --- */
-      const btn = form.querySelector(‘button[type="submit"]’);
-      btn.disabled    = true;
-      btn.textContent = ‘Envoi en cours…’;
-      status.textContent = ‘’;
-      status.className   = ‘form-status’;
-
-      try {
-        const response = await fetch(form.action, {
-          method:  ‘POST’,
-          body:    data,
-          headers: { Accept: ‘application/json’ },
-        });
-
-        if (response.ok) {
-          status.textContent = ‘✓ Message envoyé ! Sophie vous répondra sous 48h.’;
-          status.className   = ‘form-status success’;
-          form.reset();
-        } else {
-          const json = await response.json().catch(() => ({}));
-          const msg  = (json.errors || []).map((err) => err.message).join(‘, ‘);
-          status.textContent = msg || ‘Une erreur est survenue. Veuillez réessayer ou me contacter directement par email.’;
-          status.className   = ‘form-status error’;
-        }
-      } catch (_) {
-        status.textContent = ‘Impossible d’envoyer le message (vérifiez votre connexion).’;
-        status.className   = ‘form-status error’;
-      } finally {
-        btn.disabled    = false;
-        btn.textContent = ‘Envoyer ma demande’;
-      }
+      status.style.color = '';
+      status.textContent =
+        'Merci pour votre message ! Je vous réponds sous 48h. (formulaire de démonstration — à connecter à un service d’envoi de mail)';
+      form.reset();
     });
   }
 
