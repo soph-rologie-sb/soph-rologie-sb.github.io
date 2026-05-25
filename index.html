@@ -613,8 +613,7 @@
             orienter vers votre médecin traitant ou un professionnel de santé adapté.
           </p>
           <p style="margin-top: 2rem;">
-            <!-- TODO : remplacer href="#" par le chemin réel du PDF (ex: assets/docs/code-deontologie.pdf) -->
-            <a href="#" class="btn btn-gold" target="_blank" rel="noopener">
+            <a href="deontologie.html" class="btn btn-gold" target="_blank" rel="noopener">
               📄 Consulter le code de déontologie
             </a>
           </p>
@@ -754,7 +753,10 @@
           </ul>
         </div>
 
-        <form class="contact-form reveal" id="contactForm" novalidate>
+        <form class="contact-form reveal" id="contactForm"
+              action="https://formspree.io/f/mkoevezq" method="POST" novalidate>
+          <!-- Anti-spam honeypot : si un bot remplit ce champ, Formspree ignore -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="form-row">
             <div class="form-field">
               <label for="firstname">Prénom</label>
