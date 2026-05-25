@@ -3,6 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Sécurité : Content Security Policy — restreint les origines de ressources -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net https://fonts.googleapis.com;
+    font-src  'self' https://use.typekit.net https://p.typekit.net https://fonts.gstatic.com;
+    img-src   'self' data: https://p.typekit.net;
+    script-src 'self';
+    connect-src 'self' https://formspree.io https://p.typekit.net;
+    form-action 'self' https://formspree.io;
+    frame-ancestors 'none';
+    base-uri 'self';
+  " />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Soph'rologie SB — Sophie BELOT, sophrologue à Chennevières-sur-Marne</title>
   <meta name="description" content="Sophie BELOT, sophrologue à Chennevières-sur-Marne. Accompagnement des particuliers (adultes, séniors, adolescents) et des entreprises (QVCT, DUERP, RPS). Cabinet, visio ou à domicile." />
   <link rel="stylesheet" href="https://use.typekit.net/pxe4yyz.css" />
@@ -613,7 +626,7 @@
             orienter vers votre médecin traitant ou un professionnel de santé adapté.
           </p>
           <p style="margin-top: 2rem;">
-            <a href="deontologie.html" class="btn btn-gold" target="_blank" rel="noopener">
+            <a href="deontologie.html" class="btn btn-gold" target="_blank" rel="noopener noreferrer">
               📄 Consulter le code de déontologie
             </a>
           </p>

@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Sécurité : Content Security Policy — restreint les origines de ressources -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net https://fonts.googleapis.com;
+    font-src  'self' https://use.typekit.net https://p.typekit.net https://fonts.gstatic.com;
+    img-src   'self' data: https://p.typekit.net;
+    script-src 'self';
+    connect-src 'self' https://p.typekit.net;
+    frame-ancestors 'none';
+    base-uri 'self';
+  " />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Code de déontologie — Soph'rologie SB</title>
   <meta name="description" content="Code de déontologie propre à la pratique de la sophrologie — engagements professionnels de Sophie BELOT, sophrologue à Chennevières-sur-Marne." />
   <link rel="stylesheet" href="https://use.typekit.net/pxe4yyz.css" />
@@ -19,6 +31,23 @@
       margin: 0 auto;
       padding: 0 1.5rem;
     }
+    .deonto-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .deonto-logo {
+      display: inline-flex;
+      align-items: center;
+    }
+    .deonto-logo img {
+      height: 56px;
+      width: auto;
+      display: block;
+    }
     .deonto-back {
       display: inline-flex;
       align-items: center;
@@ -26,7 +55,6 @@
       color: var(--c-terracotta);
       text-decoration: none;
       font-size: 0.95rem;
-      margin-bottom: 2.5rem;
       transition: opacity 0.2s;
     }
     .deonto-back:hover { opacity: 0.7; }
@@ -111,7 +139,12 @@
   <main class="deonto-page">
     <div class="deonto-container">
 
-      <a href="index.html#engagements" class="deonto-back">← Retour au site</a>
+      <div class="deonto-topbar">
+        <a href="index.html" class="deonto-logo" aria-label="Soph'rologie SB — Accueil">
+          <img src="assets/img/logo.png" alt="Soph'rologie SB" />
+        </a>
+        <a href="index.html#engagements" class="deonto-back">← Retour au site</a>
+      </div>
 
       <header class="deonto-header">
         <span class="eyebrow">Engagements professionnels</span>
