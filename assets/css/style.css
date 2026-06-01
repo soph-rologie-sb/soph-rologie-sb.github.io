@@ -270,6 +270,10 @@ section.dark h1 em, section.dark h2 em { color: var(--c-rose); }
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--c-border);
   transition: padding var(--transition), box-shadow var(--transition);
+  /* Respecte la barre d'état / l'encoche sur mobile (iOS safe-area) */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 .site-header.scrolled {
   box-shadow: 0 4px 20px rgba(167, 91, 71, 0.08);
@@ -1230,7 +1234,7 @@ section.dark .quote-block cite { color: var(--c-rose); }
 
 /* Cadrage des nouvelles photos rondes */
 .split-visual.parcours img       { object-position: 50% 45%; }
-.split-visual.formation img      { object-position: 50% 50%; }
+.split-visual.formation img      { object-position: 80% 50%; }
 .split-visual.accompagnement img { object-position: 50% 40%; }
 .split-visual.groupe img         { object-position: 50% 50%; }
 .split-visual.motifs img         { object-position: 50% 28%; }
@@ -1321,10 +1325,12 @@ section.dark .quote-block cite { color: var(--c-rose); }
   .nav-toggle { display: block; }
   .nav { padding: 0.7rem 0; }
   .brand-logo { height: 42px; }
+  /* Garantit un espace en haut sous la barre d'état du téléphone */
+  .site-header { padding-top: max(0.4rem, env(safe-area-inset-top, 0px)); }
 
   .nav-links {
     position: fixed;
-    inset: 64px 0 auto 0;
+    inset: calc(64px + env(safe-area-inset-top, 0px)) 0 auto 0;
     background: var(--c-cream);
     flex-direction: column;
     padding: 2rem 1.5rem 2.5rem;
