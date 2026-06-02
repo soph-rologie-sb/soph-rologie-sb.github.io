@@ -1151,6 +1151,40 @@ section.dark .quote-block cite { color: var(--c-rose); }
 .justify p,
 .justify li { text-align: justify; }
 
+/* Texte d'introduction lisible (blanc) sur fond sombre */
+section.dark .lead { color: rgba(254, 245, 242, 0.92); }
+
+/* Blocs bénéfices entreprise : même hauteur dans la grille */
+.grid-2 > .theme-block { height: 100%; }
+
+/* CTA variante claire (pour faire ressortir le titre et les boutons) */
+.cta-banner.cta-light {
+  background: var(--c-rose-soft);
+  color: var(--c-text);
+}
+.cta-banner.cta-light::before { background: radial-gradient(circle, rgba(226, 169, 175, 0.5), transparent 70%); }
+.cta-banner.cta-light::after  { background: radial-gradient(circle, rgba(167, 91, 71, 0.10), transparent 70%); }
+.cta-banner.cta-light h2 { color: var(--c-terracotta-dark); }
+.cta-banner.cta-light h2 em { color: var(--c-terracotta); font-style: italic; }
+.cta-banner.cta-light p { color: var(--c-text-soft); }
+.cta-banner.cta-light .eyebrow { color: var(--c-terracotta); }
+.cta-banner.cta-light .eyebrow::before { background: var(--c-terracotta); }
+.cta-banner.cta-light .btn-primary {
+  background: var(--c-terracotta);
+  color: var(--c-cream);
+}
+.cta-banner.cta-light .btn-primary:hover { background: var(--c-terracotta-dark); color: var(--c-cream); }
+.cta-banner.cta-light .btn-outline {
+  border-color: var(--c-terracotta);
+  color: var(--c-terracotta-dark);
+}
+.cta-banner.cta-light .btn-outline:hover { background: var(--c-terracotta); color: var(--c-cream); }
+
+/* Cartes tarifs : hauteur égale, bouton aligné en bas */
+.pricing .price-card { display: flex; flex-direction: column; height: 100%; }
+.pricing .price-card ul { flex: 1 0 auto; }
+.pricing .price-card > .btn { margin-top: auto; }
+
 /* Hero : légende sous la photo ronde */
 .hero-figure { margin: 0; }
 .hero-caption {
@@ -1243,7 +1277,7 @@ section.dark .quote-block cite { color: var(--c-rose); }
 .split-visual.equipe img         { object-position: 50% 45%; }
 .split-visual.ecoute img         { object-position: 50% 45%; }
 .split-visual.eng-groupe img     { object-position: 50% 45%; }
-.split-visual.rdv img            { object-position: 50% 50%; }
+.split-visual.rdv img            { object-position: 38% 74%; }
 
 /* Bloc coordonnées centré (Contact) */
 .coordonnees-center { max-width: 540px; margin: 0 auto; }
@@ -1281,12 +1315,17 @@ section.dark .quote-block cite { color: var(--c-rose); }
 .footer-brand-name { font-family: var(--font-serif); font-size: 1.5rem; color: var(--c-cream); }
 .footer-brand-sub { font-size: 0.9rem; color: rgba(254, 245, 242, 0.7); }
 .footer-logo {
-  height: 64px;
+  height: 96px;
   width: auto;
   align-self: flex-start;
   flex: 0 0 auto;
   object-fit: contain;
   margin-top: 1.25rem;
+  /* Pastille claire pour faire ressortir le logo sur le fond terracotta */
+  background: var(--c-cream);
+  padding: 12px 18px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 /* Responsive composants v3 */
