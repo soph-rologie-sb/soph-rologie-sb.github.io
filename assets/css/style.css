@@ -1154,6 +1154,21 @@ section.dark .quote-block cite { color: var(--c-rose); }
 /* Texte d'introduction lisible (blanc) sur fond sombre */
 section.dark .lead { color: rgba(254, 245, 242, 0.92); }
 
+/* Nom sous le métier dans le hero */
+.hero-content .hero-profession { margin-bottom: 0.4rem; }
+.hero-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  color: var(--c-terracotta-dark);
+  line-height: 1.1;
+  margin-bottom: 1.4rem;
+}
+
+/* Cadrage de la photo de séance en cabinet */
+.split-visual.seance img { object-position: 50% 35%; }
+
 /* Blocs bénéfices entreprise : même hauteur dans la grille */
 .grid-2 > .theme-block { height: 100%; }
 
