@@ -1392,6 +1392,17 @@ section.dark .lead { color: rgba(254, 245, 242, 0.92); }
 .price-lines span { color: var(--c-text-soft); font-size: 0.9rem; }
 .price-lines strong { color: var(--c-terracotta-dark); font-size: 1.2rem; font-family: var(--font-serif); }
 .price-lines em { font-size: 0.78rem; font-style: normal; color: var(--c-text-soft); font-family: var(--font-sans); }
+/* Montants alignés dans une même colonne (modif 7b) :
+   le montant "70 €" occupe une colonne fixe à droite, le suffixe "+ frais*"
+   une seconde colonne fixe → les chiffres se superposent verticalement. */
+.price-lines .pl-amt {
+  display: inline-grid;
+  grid-template-columns: 3.4rem 4.6rem;
+  align-items: baseline;
+  column-gap: 0.3rem;
+}
+.price-lines .pl-amt strong { text-align: right; }
+.price-lines .pl-amt em { text-align: left; }
 .price-note {
   font-size: 0.76rem;
   color: var(--c-text-muted);
@@ -1400,22 +1411,33 @@ section.dark .lead { color: rgba(254, 245, 242, 0.92); }
   font-style: italic;
 }
 
-/* Footer — marque + logo */
-.footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; }
-.footer-brand-name { font-family: var(--font-serif); font-size: 1.5rem; color: var(--c-cream); }
-.footer-brand-sub { font-size: 0.9rem; color: rgba(254, 245, 242, 0.7); }
-.footer-logo {
-  height: 168px;
-  width: auto;
-  align-self: flex-start;
+/* Footer — marque + logo (vrai fichier logo, centré dans la pastille) */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+.footer-logo-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 210px;
+  height: 226px;
   flex: 0 0 auto;
-  object-fit: contain;
-  margin-top: 0;
-  /* Pastille claire agrandie pour un logo net et lisible */
+  box-sizing: border-box;
+  padding: 12px;
   background: var(--c-cream);
-  padding: 18px 26px;
   border-radius: 18px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+.footer-logo {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* Responsive composants v3 */
