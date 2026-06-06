@@ -1219,33 +1219,12 @@ section.dark .lead { color: rgba(254, 245, 242, 0.92); }
 /* Cadrage de la photo d'échange (nouvelle, section motifs) */
 .split-visual.echange img { object-position: 50% 40%; }
 
-/* ============================================
-   FEUILLAGE DÉCORATIF (modif 7) — coins, très faible opacité
-   ============================================ */
-.leafy { position: relative; overflow: hidden; }
-.leafy > .container { position: relative; z-index: 2; }
-.leaf-deco {
-  position: absolute;
-  z-index: 0;
-  opacity: 0.07;
-  pointer-events: none;
-  user-select: none;
-  width: clamp(220px, 26vw, 400px);
-  height: auto;
-}
-.leaf-tr { top: -7%;  right: -5%; }
-.leaf-bl { bottom: -7%; left: -5%; transform: rotate(180deg); }
-.leaf-tl { top: -7%;  left: -5%; transform: scaleX(-1); }
-.leaf-br { bottom: -7%; right: -5%; transform: rotate(180deg) scaleX(-1); }
-@media (max-width: 720px) {
-  .leaf-deco { width: clamp(140px, 40vw, 230px); opacity: 0.06; }
-}
-
 /* Cadrage de la photo de séance en cabinet */
 .split-visual.seance img { object-position: 50% 35%; }
 
-/* Blocs bénéfices entreprise : même hauteur dans la grille */
-.grid-2 > .theme-block { height: 100%; }
+/* Blocs bénéfices entreprise : même hauteur ET même position (pixel-perfect)
+   dans la grille — on annule la marge d'empilement vertical parasite. */
+.grid-2 > .theme-block { height: 100%; margin-top: 0; }
 
 /* CTA variante claire (pour faire ressortir le titre et les boutons) */
 .cta-banner.cta-light {
@@ -1411,33 +1390,19 @@ section.dark .lead { color: rgba(254, 245, 242, 0.92); }
   font-style: italic;
 }
 
-/* Footer — marque + logo (vrai fichier logo, centré dans la pastille) */
+/* Footer — logo final (Logo-Soph-rologie-SB) */
 .footer-brand {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   height: 100%;
 }
-.footer-logo-chip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 210px;
-  height: 226px;
-  flex: 0 0 auto;
-  box-sizing: border-box;
-  padding: 12px;
-  background: var(--c-cream);
-  border-radius: 18px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-}
 .footer-logo {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
+  width: clamp(150px, 13vw, 175px);
   height: auto;
-  object-fit: contain;
   display: block;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 /* Responsive composants v3 */
